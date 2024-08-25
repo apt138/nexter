@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    ports:
+      - 5500:5500
+    environment:
+      - WATCHPACK_POLLING=true
+    command: npm start
+    volumes:
+      - .:/code
+      - /code/node_modules/
+    develop:
+      watch:
+        - action: sync
+          path: ./sass
+          target: /code/sass
+          ignore:
+            - /node_modules

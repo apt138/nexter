@@ -1,0 +1,78 @@
+// COLOR VARIABLES
+$color-primary: #c69963;
+$color-primary-dark: #b28451;
+
+$color-secondary: #101d2c;
+
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
+
+$color-grey-dark-1: #54483a;
+$color-grey-dark-2: #6d5d4b;
+
+// FONT VARIABLES
+$font-primary: "Nunito", sans-serif;
+$font-display: "Josefin Sans", sans-serif;
+
+
+// RESPONSIVE BREAK POINTS
+$bp-1200: 75em;
+$bp-900: 56.25em;
+$bp-800: 50em;
+$bp-600: 37.5em;
+
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /*
+    browser default: 16px
+    we want 1rem = 10px, so we set font-size:10px,
+    but setting in px is not good choice
+    10/16 = 62.5%
+    */
+  font-size: 62.5%;
+  box-sizing: border-box;
+
+  @media only screen and (max-width:$bp-1200) {
+    // 1 rem = 8px
+    // 8/16 = .5 = 50%
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: $font-primary;
+  font-weight: 300;
+  line-height: 1.6;
+  color: $color-grey-dark-2;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+  /*1140px / 8 ~= 140px */
+  grid-template-columns:
+    [sidebar-start]80px [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8,
+      [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr)[full-end];
+
+
+  @media only screen and (max-width:$bp-900) {
+    grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+    /*1140px / 8 ~= 140px */
+    grid-template-columns:
+      [full-start] minmax(6rem, 1fr) [center-start] repeat(8,
+        [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr)[full-end];
+  }
+
+  @media only screen and (max-width:$bp-800) {
+    grid-template-rows: 6rem calc(100vh - 6rem);
+  }
+
+}
